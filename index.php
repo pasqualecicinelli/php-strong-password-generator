@@ -1,4 +1,28 @@
-<?php 
+<?php
+
+$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!£$@&/+*?^.,:;-_#";
+
+$pass = [];
+$lung_pass = $_GET["lunghezza_password"];
+
+function generate_password($chars, $lung_pass)
+{
+
+    $chars_lung = strlen($chars) - 1;
+
+    for ($i = 0; $i < $lung_pass; $i++) {
+        $random = rand(0, $chars_lung);
+        $pass[] = $chars[$random];
+    }
+
+    return (implode($pass));
+}
+
+$new_password = generate_password($chars, $lung_pass);
+
+
+
+echo ($new_password);
 
 ?>
 
@@ -19,8 +43,19 @@
 
 <body>
 
-    <div class="container">efef</div>
-    <h1>ciao</h1>
+    <div class="container mt-5">
+
+        <form method="GET" action="">
+            <label for="lunghezza_password">
+                <h3>Lunghezza Password da 8 a 20 caratteri max: </h3>
+            </label>
+            <input type="number" min="8" max="20" name="lunghezza_password" id="lunghezza_password">
+
+            <button class="btn btn-primary">Invia</button>
+        </form>
+
+    </div>
+
 </body>
 
 </html>
