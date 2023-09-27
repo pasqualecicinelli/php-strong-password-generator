@@ -1,28 +1,13 @@
 <?php
 
-$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!£$@&/+*?^.,:;-_#";
+$chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$@&/+*?^.,:;-_#";
 
 $pass = [];
 $lung_pass = $_GET["lunghezza_password"];
 
-function generate_password($chars, $lung_pass)
-{
-
-    $chars_lung = strlen($chars) - 1;
-
-    for ($i = 0; $i < $lung_pass; $i++) {
-        $random = rand(0, $chars_lung);
-        $pass[] = $chars[$random];
-    }
-
-    return (implode($pass));
-}
+include __DIR__ . '/functions.php';
 
 $new_password = generate_password($chars, $lung_pass);
-
-
-
-echo ($new_password);
 
 ?>
 
@@ -52,8 +37,13 @@ echo ($new_password);
             <input type="number" min="8" max="20" name="lunghezza_password" id="lunghezza_password">
 
             <button class="btn btn-primary">Invia</button>
+            <!-- <input class="btn btn-outline-secondary" type="reset" value="Reset"></input>  -->
         </form>
 
+        <h4 class="mt-5">
+            La tua Password é:
+            <?= $new_password ?>
+        </h4>
     </div>
 
 </body>
