@@ -3,11 +3,36 @@
 $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!$@&/+*?^.,:;-_#";
 
 $pass = [];
-$lung_pass = $_GET["lunghezza_password"];
 
-include __DIR__ . '/functions.php';
 
-$new_password = generate_password($chars, $lung_pass);
+
+$has_number = isset($_GET["lunghezza_password"]);
+
+if ($has_number) {
+
+    var_dump($has_number);
+
+    $lung_pass = $_GET["lunghezza_password"];
+
+    include __DIR__ . '/functions.php';
+
+    $new_password = generate_password($chars, $lung_pass);
+
+    session_start();
+
+    $SESSION['$new_password'] = generate_password($chars, $lung_pass);
+
+    if ($SESSION['$new_password']) {
+
+        var_dump($SESSION['$new_password']);
+
+        header('Location: ./show_password.php');
+
+        //Va alla pagina show_password.php ma il risultato è null
+    }
+
+}
+
 
 ?>
 
@@ -40,10 +65,7 @@ $new_password = generate_password($chars, $lung_pass);
             <!-- <input class="btn btn-outline-secondary" type="reset" value="Reset"></input>  -->
         </form>
 
-        <h4 class="mt-5">
-            La tua Password é:
-            <?= $new_password ?>
-        </h4>
+
     </div>
 
 </body>
