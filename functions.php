@@ -10,7 +10,29 @@ function generate_password($chars, $lung_pass)
         $pass[] = $chars[$random];
     }
 
-    return (implode($pass));
+    //controllo
+
+    $maiuscola = false;
+    $minuscola = false;
+    $numero = false;
+    $car_speciale = false;
+
+    foreach ($pass as $char_control) {
+        if (ctype_upper($char_control)) {
+            $maiuscola = true;
+        } elseif (ctype_lower($char_control)) {
+            $minuscola = true;
+        } elseif (is_numeric($char_control)) {
+            $numero = true;
+        } else {
+            $car_speciale = true;
+        }
+    }
+
+    if ($maiuscola && $minuscola && $numero && $car_speciale) {
+        return (implode($pass));
+    }
+
 }
 
 ?>
