@@ -20,9 +20,9 @@ if ($has_number) {
 
     session_start();
 
-    $SESSION['$new_password'] = generate_password($chars, $lung_pass);
+    $_SESSION['$new_password'] = generate_password($chars, $lung_pass);
 
-    if ($SESSION['$new_password']) {
+    if ($_SESSION['$new_password']) {
 
         echo "password ok";
     } else {
@@ -30,9 +30,9 @@ if ($has_number) {
     }
 
 
-    var_dump($SESSION['$new_password']);
+    var_dump($_SESSION['$new_password']);
 
-    //header('Location: ./show_password.php');
+    header('Location: ./show_password.php');
 
     //Va alla pagina show_password.php ma il risultato è null
 }
@@ -67,10 +67,6 @@ if ($has_number) {
             <button class="btn btn-primary">Invia</button>
             <!-- <input class="btn btn-outline-secondary" type="reset" value="Reset"></input>  -->
         </form>
-        <h4 class="mt-5">
-            La tua Password é:
-            <?= $SESSION['$new_password'] ?>
-        </h4>
 
     </div>
 

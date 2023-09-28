@@ -2,8 +2,6 @@
 
 session_start();
 
-var_dump($SESSION['$new_password']);
-
 ?>
 
 
@@ -26,7 +24,8 @@ var_dump($SESSION['$new_password']);
     <div class="container">
         <h4 class="mt-5">
             La tua Password é:
-            <?= $SESSION['$new_password'] ?>
+            <?= $_SESSION['$new_password']
+                ?>
         </h4>
     </div>
 
